@@ -3,11 +3,11 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
-export async function GET(req: NextRequest, context: { params: Record<string, string> }) {
-    const userId = Number(context.params.id);
+export async function GET(req: NextRequest, { params }: { params: Promise<Record<string, string>> }) {
+    const { id } = await params
 
     const user = await prisma.user.findUnique({
-        where: { id: userId },
+        where: { id: Number(id) },
     });
 
     if (!user) {
@@ -17,12 +17,12 @@ export async function GET(req: NextRequest, context: { params: Record<string, st
     return NextResponse.json(user);
 }
 
-export async function PUT(req: NextRequest, context: { params: Record<string, string> }) {
-    const userId = Number(context.params.id);
+export async function PUT(req: NextRequest, { params }: { params: Promise<Record<string, string>> }) {
+    const { id } = await params
     const body = await req.json();
 
     const user = await prisma.user.update({
-        where: { id: userId },
+        where: { id: Number(id) },
         data: {
             name: body.name,
             email: body.email,
@@ -32,11 +32,11 @@ export async function PUT(req: NextRequest, context: { params: Record<string, st
     return NextResponse.json(user);
 }
 
-export async function DELETE(req: NextRequest, context: { params: Record<string, string> }) {
-    const userId = Number(context.params.id);
+export async function DELETE(req: NextRequest, { params }: { params: Promise<Record<string, string>> }) {
+    const { id } = await params
 
     await prisma.user.delete({
-        where: { id: userId },
+        where: { id: Number(id) },
     });
 
     return NextResponse.json({ mesaj: 'Kullanıcı silindi' });
