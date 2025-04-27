@@ -27,13 +27,6 @@ Full Stack Web Developer öğrenim sürecim boyunca Next.js ve modern araçları
 
 ---
 
-## 🌐 Canlı Demo
-
-🔗 **Proje Yayında:**  
-👉 [https://user-crud-app-kohl.vercel.app/users](https://user-crud-app-kohl.vercel.app/users)
-
----
-
 ## 🔧 Geliştirme Kurulumu
 
 ```bash
